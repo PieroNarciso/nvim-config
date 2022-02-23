@@ -4,7 +4,16 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true,
-    disable = { 'lua', 'typescript', 'cpp', 'yaml', 'python' }
+    disable = {
+      'lua',
+      'typescript',
+      'cpp',
+      'yaml',
+      'python',
+      'go',
+      'ruby',
+      'html'
+    }
   },
   context_commentstring = {
     enable = true
