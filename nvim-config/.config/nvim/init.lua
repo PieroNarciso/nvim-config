@@ -14,7 +14,7 @@ require('nv-presence')
 require('nv-colorizer')
 require('nv-telescope')
 require('nv-autopairs')
-require('nv-compe')
+require('nv-cmp')
 require('nv-autotag')
 require('nv-formatter')
 
