@@ -6,7 +6,8 @@ local opts = { noremap = true, silent = true }
 buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+buf_set_keymap('n', '<Leader>ft', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
 -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -46,44 +47,53 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local lsp_installer = require('nvim-lsp-installer')
+local servers = {
+  'tsserver', 'vuels', 'pyright', 'html', 'dockerls', 'vimls', 'tailwindcss',
+  'yamlls', 'diagnosticls', 'cpp', 'denols', 'sumneko_lua'
+}
 
-require'lspconfig'.solargraph.setup{}
+require('nvim-lsp-installer').setup {
+  ensure_installed = servers,
+  automatic_installation = true,
+}
 
-lsp_installer.on_server_ready(function(server)
+for _, server in pairs(servers) do
   local config = {}
-  if server.name == 'tsserver' then
+
+  if server == 'tsserver' then
     config = require'lsp.tsserver'
-  elseif server.name == 'vuels' then
+  elseif server == 'vuels' then
     config = require'lsp.vue'
   -- elseif server.name == 'solargraph' then
   --   config = require'lsp.ruby'
-  elseif server.name == 'pyright' then
+  elseif server == 'pyright' then
     config = require'lsp.python'
-  elseif server.name == 'html' then
+  elseif server == 'html' then
     config = require'lsp.html'
-  elseif server.name == 'cssls' then
+  elseif server == 'cssls' then
     config = require'lsp.css'
-  elseif server.name == 'sumneko_lua' then
+  elseif server == 'sumneko_lua' then
     config = require'lsp.lua'
-  elseif server.name == 'dockerls' then
+  elseif server == 'dockerls' then
     config = require'lsp.docker'
-  elseif server.name == 'tailwindcss' then
+  elseif server == 'tailwindcss' then
     config = require'lsp.tailwindcss'
-  elseif server.name == 'vimls' then
+  elseif server == 'vimls' then
     config = require'lsp.vim'
-  elseif server.name == 'yamlls' then
+  elseif server == 'yamlls' then
     config = require'lsp.yaml'
-  elseif server.name == 'diagnosticls' then
+  elseif server == 'diagnosticls' then
     config = require'lsp.diagnosticls'
-  elseif server.name == 'denols' then
+  elseif server == 'denols' then
     config = require'lsp.deno'
-  elseif server.name == 'cpp' then
+  elseif server == 'cpp' then
     config = require'lsp.cpp'
   end
-  config.on_attach = on_attach
   if not config.root_dir then
     config.root_dir = function () return vim.fn.getcwd() end
   end
-  server:setup(config)
-end)
+
+  config.on_attach = on_attach
+  require('lspconfig')[server].setup(config)
+end
+

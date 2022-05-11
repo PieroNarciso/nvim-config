@@ -64,7 +64,8 @@ vim.bo.smartindent = true
 -- Ejs
 vim.api.nvim_exec(
 [[
-  autocmd BufRead,BufNewFile *.ejs setlocal filetype=html
+  autocmd BufRead,BufNewFile *.{ejs,erb} setlocal filetype=html
+  autocmd BufRead,BufNewFile Dockerfile.* setlocal filetype=dockerfile
 ]],
 true
 )
@@ -72,6 +73,7 @@ true
 vim.api.nvim_exec(
 [[
 	autocmd Filetype python setlocal sw=4 ts=4 sts=4 expandtab
+	autocmd Filetype nginx setlocal sw=4 ts=4 sts=4 expandtab
 	autocmd Filetype go setlocal sw=4 ts=4 sts=4 expandtab
 	autocmd Filetype html setlocal sw=2 ts=2 sts=2 expandtab
 	autocmd Filetype xml setlocal sw=2 ts=2 sts=2 expandtab
