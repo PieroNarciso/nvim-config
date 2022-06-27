@@ -13,7 +13,7 @@ return require('packer').startup(function(use)
   -- Utilities
   use 'lukas-reineke/indent-blankline.nvim'
   use {
-    'blackCauldron7/surround.nvim',
+    'ur4ltz/surround.nvim',
     config = function()
       require'surround'.setup { mappings_style = 'surround' }
     end

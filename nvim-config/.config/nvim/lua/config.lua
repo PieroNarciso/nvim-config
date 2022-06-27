@@ -27,7 +27,7 @@ vim.o.showmode = false
 vim.o.guicursor = ''
 
 -- Enable color column to 80
-vim.wo.colorcolumn = '80'
+vim.wo.colorcolumn = '100'
 
 -- Enable highlight current cursor line
 vim.o.cursorline = true;
@@ -74,7 +74,7 @@ vim.api.nvim_exec(
 [[
 	autocmd Filetype python setlocal sw=4 ts=4 sts=4 expandtab
 	autocmd Filetype nginx setlocal sw=4 ts=4 sts=4 expandtab
-	autocmd Filetype go setlocal sw=4 ts=4 sts=4 expandtab
+	autocmd Filetype go setlocal sw=2 ts=2 sts=2 noexpandtab
 	autocmd Filetype html setlocal sw=2 ts=2 sts=2 expandtab
 	autocmd Filetype xml setlocal sw=2 ts=2 sts=2 expandtab
 	autocmd Filetype vue setlocal sw=2 ts=2 sts=2 expandtab

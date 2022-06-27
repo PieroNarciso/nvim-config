@@ -49,13 +49,16 @@ end
 
 local servers = {
   'tsserver', 'vuels', 'pyright', 'html', 'dockerls', 'vimls', 'tailwindcss',
-  'yamlls', 'diagnosticls', 'cpp', 'denols', 'sumneko_lua'
+  'yamlls', 'diagnosticls', 'cssls', 'denols', 'sumneko_lua', 'gopls'
 }
 
 require('nvim-lsp-installer').setup {
   ensure_installed = servers,
   automatic_installation = true,
 }
+
+require('lspconfig').solargraph.setup{}
+require('lspconfig').svelte.setup{}
 
 for _, server in pairs(servers) do
   local config = {}
