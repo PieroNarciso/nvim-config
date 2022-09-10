@@ -4,6 +4,7 @@ require('config')
 require('colorscheme')
 
 -- Plugins
+require('nv-luasnip')
 require('nv-treesitter')
 require('nv-fzf')
 require('nv-lualine')
