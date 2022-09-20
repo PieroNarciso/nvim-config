@@ -54,11 +54,12 @@ local servers = {
 
 require('nvim-lsp-installer').setup {
   ensure_installed = servers,
-  automatic_installation = true,
+  -- automatic_installation = true,
 }
 
 require('lspconfig').solargraph.setup{}
 require('lspconfig').svelte.setup{}
+require('lspconfig').clangd.setup{}
 
 for _, server in pairs(servers) do
   local config = {}
@@ -89,8 +90,8 @@ for _, server in pairs(servers) do
     config = require'lsp.diagnosticls'
   elseif server == 'denols' then
     config = require'lsp.deno'
-  elseif server == 'cpp' then
-    config = require'lsp.cpp'
+  -- elseif server == 'clangd' then
+  --   config = require'lsp.cpp'
   end
   if not config.root_dir then
     config.root_dir = function () return vim.fn.getcwd() end
