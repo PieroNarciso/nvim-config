@@ -3,7 +3,8 @@ return {
     'javascript',
     'javascriptreact',
     'typescript',
-    'typescriptreact'
+    'typescriptreact',
+    'svelte',
   },
   init_options = {
     linters = {
@@ -39,6 +40,7 @@ return {
       javascriptreact = 'eslint',
       typescript = 'eslint',
       typescriptreact = 'eslint',
+      svelte = 'eslint',
     },
   }
 }
