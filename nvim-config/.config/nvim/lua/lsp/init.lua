@@ -61,6 +61,8 @@ require('lspconfig').solargraph.setup{}
 require('lspconfig').svelte.setup{}
 require('lspconfig').clangd.setup{}
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 for _, server in pairs(servers) do
   local config = {}
 
@@ -98,6 +100,7 @@ for _, server in pairs(servers) do
   end
 
   config.on_attach = on_attach
+  config.capabilities = capabilities
   require('lspconfig')[server].setup(config)
 end
 
