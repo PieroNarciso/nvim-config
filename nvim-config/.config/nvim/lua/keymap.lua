@@ -1,24 +1,26 @@
 vim.g.mapleader = " "
 
-local set = vim.api.nvim_set_keymap
-
 -- Unbind some useless/annoying default key bindings
-set('n', 'Q', '<Nop>', { noremap = false })
+vim.keymap.set('n', 'Q', '<Nop>', { noremap = false })
 
 -- Move between vim buffers
 -- set('n', '<Tab>', ':bnext<CR>', { noremap = true })
-set('n', '<S-Tab>', ':bprevious<CR>', { noremap = true })
+vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { noremap = true })
 
 -- Visual map for maintain Visual Mode after shifting > and <
-set('v', '<', '<gv', {})
-set('v', '>', '>gv', {})
+vim.keymap.set('v', '<', '<gv', {})
+vim.keymap.set('v', '>', '>gv', {})
 
 -- Close current buffer
-set('n', '<Leader>cb', ':bdelete<CR>', {})
+vim.keymap.set('n', '<Leader>cb', ':bdelete<CR>', {})
 
 -- Select all buffer
-set('n', '<Leader>a', 'ggVG', {})
+vim.keymap.set('n', '<Leader>a', 'ggVG', {})
 
 -- Search mapping: Center next and previous search
-set('n', 'n', 'nzzzv', { noremap = true })
-set('n', 'N', 'Nzzzv', { noremap = true })
+vim.keymap.set('n', 'n', 'nzzzv', { noremap = true })
+vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true })
+
+
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')

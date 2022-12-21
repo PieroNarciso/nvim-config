@@ -37,27 +37,29 @@ return require('packer').startup(function(use)
   }
 
   -- Completion
+  use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  -- use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/nvim-cmp'
   use {"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"}
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
-  -- use 'hrsh7th/vim-vsnip'
-  -- use 'hrsh7th/vim-vsnip-integ'
 
-  -- Language support
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
+  -- Language support LSP
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim'
+    }
+  }
 
   -- Syntax Highlighting
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'norcalli/nvim-colorizer.lua'
-  -- use { 'posva/vim-vue', ft = {'vue'} }
 
   -- Interface
   use {

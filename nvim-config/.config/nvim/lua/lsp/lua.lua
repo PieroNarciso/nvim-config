@@ -1,3 +1,1 @@
-return {
-  filetypes = { 'lua' }
-}
+return {}
