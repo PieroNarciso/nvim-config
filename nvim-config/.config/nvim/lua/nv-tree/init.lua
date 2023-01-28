@@ -12,7 +12,7 @@ require('nvim-tree').setup {
   -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
   open_on_tab         = false,
   -- hijacks new directory buffers when they are opened.
-  hijack_directories   = {
+  hijack_directories  = {
     -- enable the feature
     enable = true,
     -- allow to open the tree if it was previously closed
@@ -23,7 +23,7 @@ require('nvim-tree').setup {
   -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
   update_cwd          = false,
   -- show lsp diagnostics in the signcolumn
-  diagnostics = {
+  diagnostics         = {
     enable = true,
     icons = {
       hint = "",
@@ -44,7 +44,7 @@ require('nvim-tree').setup {
     ignore_list = {}
   },
   -- configuration options for the system open command (`s` in the tree by default)
-  system_open = {
+  system_open         = {
     -- the command to run this, leaving nil should work in most cases
     cmd  = nil,
     -- the command arguments as a list
@@ -53,7 +53,7 @@ require('nvim-tree').setup {
 
   view = {
     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
-    width = 30,
+    width = 35,
     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
     side = 'right',
     -- if true the tree will resize itself after opening a file
@@ -64,6 +64,18 @@ require('nvim-tree').setup {
       custom_only = false,
       -- list of mappings to set on the tree manually
       list = {}
+    },
+    float = {
+      enable = false,
+      quit_on_focus_loss = true,
+      open_win_config = {
+        relative = "editor",
+        border = "rounded",
+        width = 30,
+        height = 30,
+        row = 1,
+        col = 1,
+      },
     }
   }
 }

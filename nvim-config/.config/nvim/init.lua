@@ -17,7 +17,10 @@ require('nv-telescope')
 require('nv-autopairs')
 require('nv-cmp')
 require('nv-autotag')
-require('nv-formatter')
+-- require('nv-formatter')
+require('nv-copilot')
+require('nv-dap')
+require('nv-dap-ui')
 
 -- LSP
 require('lsp')

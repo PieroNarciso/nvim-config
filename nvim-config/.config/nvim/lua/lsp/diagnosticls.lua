@@ -26,7 +26,7 @@ return {
           column = 'column',
           endLine = 'endLine',
           endColumn = 'endColumn',
-          message = '${message} [${ruleId}]',
+          message = '[eslint] ${message} [${ruleId}]',
           security = 'severity'
         },
         securities = {
@@ -34,6 +34,19 @@ return {
           [1] = 'warning'
         }
       },
+    },
+    formatters = {
+      prettier = {
+        command = 'prettier',
+        args = {'--stdin-filepath', '%filepath'}
+      }
+    },
+    formatFiletypes = {
+      javascript = 'prettier',
+      javascriptreact = 'prettier',
+      typescript = 'prettier',
+      typescriptreact = 'prettier',
+      svelte = 'prettier',
     },
     filetypes = {
       javascript = 'eslint',

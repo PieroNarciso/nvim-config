@@ -36,6 +36,9 @@ return require('packer').startup(function(use)
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
 
+  -- Debugging
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+
   -- Completion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -45,6 +48,7 @@ return require('packer').startup(function(use)
   use {"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"}
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
+  use 'github/copilot.vim'
 
   -- Language support LSP
   use {
@@ -80,8 +84,8 @@ return require('packer').startup(function(use)
     },
   }
   use {
-      'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-tree.lua',
+      requires = 'nvim-tree/nvim-web-devicons',
   }
 
   -- Colorscheme
