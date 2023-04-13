@@ -34,7 +34,7 @@ end
 
 local servers = {
   'tsserver', 'vuels', 'pyright', 'html', 'dockerls', 'tailwindcss',
-  'yamlls', 'diagnosticls', 'cssls', 'gopls', 'sumneko_lua', 'solargraph',
+  'yamlls', 'diagnosticls', 'cssls', 'gopls', 'lua_ls', 'solargraph',
   'svelte'
 }
 
