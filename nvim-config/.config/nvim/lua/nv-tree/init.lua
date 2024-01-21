@@ -54,13 +54,6 @@ require('nvim-tree').setup {
     side = 'right',
     -- if true the tree will resize itself after opening a file
     adaptive_size = false,
-    mappings = {
-      -- custom only false will merge the list with the default mappings
-      -- if true, it will only use your list to set the mappings
-      custom_only = false,
-      -- list of mappings to set on the tree manually
-      list = {}
-    },
     float = {
       enable = false,
       quit_on_focus_loss = true,
