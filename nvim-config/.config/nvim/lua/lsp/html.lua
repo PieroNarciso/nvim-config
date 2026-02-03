@@ -1,6 +1,6 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-return {
+vim.lsp.config('html', {
   capabilities = capabilities,
-}
+})

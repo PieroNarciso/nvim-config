@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
   use {
     'ur4ltz/surround.nvim',
     config = function()
-      require'surround'.setup { mappings_style = 'surround' }
+      require 'surround'.setup { mappings_style = 'surround' }
     end
   }
   use 'tpope/vim-commentary'
@@ -27,17 +27,17 @@ return require('packer').startup(function(use)
   use 'mhartington/formatter.nvim'
 
   -- Competitive programming
-  use { 'searleser97/cpbooster.vim', ft = {'cpp'} }
+  use { 'searleser97/cpbooster.vim', ft = { 'cpp' } }
 
   -- Integration
   use 'junegunn/fzf.vim'
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
   }
 
   -- Debugging
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  -- use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
   -- Completion
   use 'hrsh7th/nvim-cmp'
@@ -45,10 +45,23 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  use {"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"}
+  use { "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" }
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
-  use 'github/copilot.vim'
+  -- use 'github/copilot.vim'
+  use {
+    'Exafunction/codeium.vim',
+    config = function()
+      vim.g.codeium_no_map_tab = 1
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-j>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+      vim.keymap.set('i', '<C-l>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+        { expr = true, silent = true })
+      vim.keymap.set('i', '<C-h>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+        { expr = true, silent = true })
+      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
+    end
+  }
 
   -- Language support LSP
   use {
@@ -68,13 +81,13 @@ return require('packer').startup(function(use)
   -- Interface
   use {
     'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use {
     'kdheepak/tabline.nvim',
     requires = {
-      { 'hoob3rt/lualine.nvim', opt=true },
-      {'kyazdani42/nvim-web-devicons', opt = true}
+      { 'hoob3rt/lualine.nvim',         opt = true },
+      { 'kyazdani42/nvim-web-devicons', opt = true }
     }
   }
   use {
@@ -84,11 +97,10 @@ return require('packer').startup(function(use)
     },
   }
   use {
-      'nvim-tree/nvim-tree.lua',
-      requires = 'nvim-tree/nvim-web-devicons',
+    'nvim-tree/nvim-tree.lua',
+    requires = 'nvim-tree/nvim-web-devicons',
   }
 
   -- Colorscheme
   use 'sainnhe/gruvbox-material'
-
 end)

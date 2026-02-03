@@ -91,5 +91,7 @@ vim.api.nvim_exec(
 	autocmd Filetype jsonc setlocal sw=2 ts=2 sts=2 expandtab
 	autocmd Filetype make setloc sw=4 ts=4 sts=4 noexpandtab
 	autocmd Filetype cpp setloc sw=4 ts=4 sts=4 noexpandtab
+	autocmd Filetype sql setlocal sw=2 ts=2 sts=2 expandtab
+	autocmd Filetype prisma setlocal sw=2 ts=2 sts=2 expandtab
 ]],
 true)

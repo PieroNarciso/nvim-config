@@ -1,3 +1,3 @@
-return {
+vim.lsp.config('pyright', {
   filetypes = { 'python'}
-}
+})

@@ -7,6 +7,8 @@ require'nvim-treesitter.configs'.setup {
     disable = {
       'lua',
       'typescript',
+      -- 'typescriptreact',
+      -- 'tsx',
       'cpp',
       'yaml',
       'python',

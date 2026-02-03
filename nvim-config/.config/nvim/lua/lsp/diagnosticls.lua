@@ -37,8 +37,8 @@ return {
     },
     formatters = {
       prettier = {
-        command = 'prettier',
-        args = {'--stdin-filepath', '%filepath'}
+        command = 'prettierd',
+        args = {'%filepath'}
       }
     },
     formatFiletypes = {

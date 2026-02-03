@@ -10,5 +10,5 @@ return {
     scss = {
       validate = true
     }
-  }
+  },
 }
