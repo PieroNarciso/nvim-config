@@ -40,12 +40,12 @@ require('nvim-tree').setup {
     ignore_list = {}
   },
   -- configuration options for the system open command (`s` in the tree by default)
-  system_open         = {
-    -- the command to run this, leaving nil should work in most cases
-    cmd  = nil,
-    -- the command arguments as a list
-    args = {}
-  },
+  -- system_open         = {
+  --   -- the command to run this, leaving nil should work in most cases
+  --   cmd  = nil,
+  --   -- the command arguments as a list
+  --   args = {}
+  -- },
 
   view = {
     -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement

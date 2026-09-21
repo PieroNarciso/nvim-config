@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
   }
   use 'tpope/vim-commentary'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'andweeb/presence.nvim'
+  -- use 'andweeb/presence.nvim'
   use 'tpope/vim-fugitive'
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
@@ -35,6 +35,39 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
   }
+
+  use {
+    'coder/claudecode.nvim',
+    requires = { 'folke/snacks.nvim' },
+    config = function()
+      require('claudecode').setup()
+
+      -- General keymaps
+      vim.keymap.set('n', '<leader>ac', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude' })
+      vim.keymap.set('n', '<leader>af', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude' })
+      vim.keymap.set('n', '<leader>ar', '<cmd>ClaudeCode --resume<cr>', { desc = 'Resume Claude' })
+      vim.keymap.set('n', '<leader>aC', '<cmd>ClaudeCode --continue<cr>', { desc = 'Continue Claude' })
+      vim.keymap.set('n', '<leader>am', '<cmd>ClaudeCodeSelectModel<cr>', { desc = 'Select Claude model' })
+      vim.keymap.set('n', '<leader>ab', '<cmd>ClaudeCodeAdd %<cr>', { desc = 'Add current buffer' })
+
+      -- Visual mode
+      vim.keymap.set('v', '<leader>as', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send to Claude' })
+
+      -- Diff management
+      vim.keymap.set('n', '<leader>aa', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept diff' })
+      vim.keymap.set('n', '<leader>ad', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Deny diff' })
+
+      -- File tree keymap (ft-specific, using autocmd)
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'NvimTree', 'neo-tree', 'oil', 'minifiles', 'netrw' },
+        callback = function(ev)
+          vim.keymap.set('n', '<leader>as', '<cmd>ClaudeCodeTreeAdd<cr>',
+            { desc = 'Add file', buffer = ev.buf })
+        end,
+      })
+    end,
+  }
+
 
   -- Debugging
   -- use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
@@ -82,13 +115,6 @@ return require('packer').startup(function(use)
   use {
     'hoob3rt/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use {
-    'kdheepak/tabline.nvim',
-    requires = {
-      { 'hoob3rt/lualine.nvim',         opt = true },
-      { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
   }
   use {
     'lewis6991/gitsigns.nvim',
