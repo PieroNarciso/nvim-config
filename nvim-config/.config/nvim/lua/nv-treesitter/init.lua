@@ -1,18 +1,23 @@
--- require('nvim-treesitter').setup {
---   -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
---   install_dir = vim.fn.stdpath('data') .. '/site'
--- }
+require('nvim-treesitter').setup {
+  -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+  install_dir = vim.fn.stdpath('data') .. '/site'
+}
 
--- require('nvim-treesitter').install {
---   'svelte',
---   'vue',
---   'typescript',
---   'javascript',
---   'tsx',
---   'jsx',
---   'json',
---   'html'
--- }
+-- Every language the FileType autocmd below starts treesitter for must be in
+-- this list, or a fresh machine has no parser for it. install() is async and
+-- skips parsers that are already there; it needs tree-sitter-cli and a C
+-- compiler (both in the dotfiles package lists).
+require('nvim-treesitter').install {
+  'svelte',
+  'vue',
+  'typescript',
+  'javascript',
+  'tsx',
+  'jsx',
+  'json',
+  'html',
+  'go'
+}
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {
@@ -28,7 +33,9 @@ vim.api.nvim_create_autocmd('FileType', {
     'html',
     'go'
   },
-  callback = function() vim.treesitter.start() end
+  -- pcall: the parser may still be compiling on the first launch after
+  -- install(), and a missing parser should cost highlighting, not an error.
+  callback = function() pcall(vim.treesitter.start) end
 })
 
 require('treesitter-context').setup {

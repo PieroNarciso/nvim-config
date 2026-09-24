@@ -119,7 +119,10 @@ return require('packer').startup(function(use)
   }
 
   -- Syntax Highlighting
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  -- On the bootstrap launch the plugin is cloned but not yet on the
+  -- runtimepath, so :TSUpdate does not exist; nv-treesitter's install() list
+  -- builds the parsers on the next launch instead.
+  use { 'nvim-treesitter/nvim-treesitter', run = function() pcall(vim.cmd, 'TSUpdate') end }
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'norcalli/nvim-colorizer.lua'
 
@@ -143,6 +146,15 @@ return require('packer').startup(function(use)
   use 'sainnhe/gruvbox-material'
 
   if PACKER_BOOTSTRAP then
+    -- init.lua skips every plugin's config on this launch, so say so inside
+    -- nvim rather than leave a half-configured editor looking broken.
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'PackerComplete',
+      once = true,
+      callback = function()
+        vim.notify('Plugins installed. Quit and reopen nvim to load them.', vim.log.levels.WARN)
+      end,
+    })
     require('packer').sync()
   end
 end)
