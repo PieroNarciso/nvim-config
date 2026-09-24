@@ -14,7 +14,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
 
 local servers = {
-  'ts_ls', 'vuels', 'pyright', 'html', 'dockerls', 'tailwindcss',
+  'ts_ls', 'vue_ls', 'pyright', 'html', 'dockerls', 'tailwindcss',
   'yamlls', 'diagnosticls', 'cssls', 'gopls', 'lua_ls', 'solargraph',
   'svelte'
 }
