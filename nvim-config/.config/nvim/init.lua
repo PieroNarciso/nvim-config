@@ -1,4 +1,9 @@
 require('plugins')
+-- First launch on a new machine: every module below requires a plugin that
+-- packer is still installing. Restart nvim once the sync finishes.
+if PACKER_BOOTSTRAP then
+  return
+end
 require('keymap')
 require('config')
 require('colorscheme')

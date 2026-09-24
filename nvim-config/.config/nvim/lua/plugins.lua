@@ -6,6 +6,18 @@
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 -- vim._update_package_paths()
 
+-- packer is not in any package list, and ~/.local/share/nvim is not carried
+-- between machines, so a fresh one has no packer at all and init.lua died on
+-- its first require. Clone it on first launch; init.lua stops after this
+-- file until the sync below has installed everything else.
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.system({ 'git', 'clone', '--depth', '1',
+    'https://github.com/wbthomason/packer.nvim', install_path })
+  vim.cmd [[packadd packer.nvim]]
+  PACKER_BOOTSTRAP = true
+end
+
 return require('packer').startup(function(use)
   -- Packer manager
   use 'wbthomason/packer.nvim'
@@ -129,4 +141,8 @@ return require('packer').startup(function(use)
 
   -- Colorscheme
   use 'sainnhe/gruvbox-material'
+
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)
